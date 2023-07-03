@@ -63,6 +63,7 @@ class Passwall
         ];
         if ($server['tls']) {
             if ($server['tlsSettings']) {
+                $config['scy'] = 'zero';
                 $tlsSettings = $server['tlsSettings'];
                 if (isset($tlsSettings['serverName']) && !empty($tlsSettings['serverName']))
                     $config['sni'] = $tlsSettings['serverName'];

@@ -61,11 +61,12 @@ class SagerNet
     public static function buildVmess($uuid, $server)
     {
         $config = [
-            "encryption" => "none",
+            "encryption" => "auto",
             "type" => urlencode($server['network']),
             "security" => $server['tls'] ? "tls" : "",
         ];
         if ($server['tls']) {
+            $config['encryption'] = 'zero';
             if ($server['tlsSettings']) {
                 $tlsSettings = $server['tlsSettings'];
                 if (isset($tlsSettings['serverName']) && !empty($tlsSettings['serverName']))
