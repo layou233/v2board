@@ -85,9 +85,11 @@ class SSRPlus
     {
         $name = rawurlencode($server['name']);
         $query = http_build_query([
-            'allowInsecure' => $server['allow_insecure'],
+            //'allowInsecure' => $server['allow_insecure'],
             'peer' => $server['server_name'],
-            'sni' => $server['server_name']
+            'sni' => $server['server_name'],
+            'type' => $server['allow_insecure'] ? "grpc" : "tcp",
+            'serviceName' => $server['allow_insecure'] ? "IKunCloud" : ""
         ]);
         $uri = "trojan://{$password}@{$server['host']}:{$server['port']}?{$query}#{$name}";
         $uri .= "\r\n";

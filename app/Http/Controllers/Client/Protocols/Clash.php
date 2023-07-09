@@ -171,7 +171,13 @@ class Clash
         $array['password'] = $password;
         $array['udp'] = true;
         if (!empty($server['server_name'])) $array['sni'] = $server['server_name'];
-        if (!empty($server['allow_insecure'])) $array['skip-cert-verify'] = ($server['allow_insecure'] ? true : false);
+        //if (!empty($server['allow_insecure'])) $array['skip-cert-verify'] = ($server['allow_insecure'] ? true : false);
+        if ($server['allow_insecure']) {
+            $array['network'] = 'grpc';
+            $array['grpc-opts'] = [
+                'grpc-service-name' => "IKunCloud"
+            ];
+        }
         return $array;
     }
 

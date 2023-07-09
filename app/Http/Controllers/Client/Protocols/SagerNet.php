@@ -92,9 +92,12 @@ class SagerNet
 
     public static function buildTrojan($uuid, $server)
     {
+        if ($server['allow_insecure']) {
+            return ""; // gRPC mode supported
+        }
         $name = rawurlencode($server['name']);
         $query = http_build_query([
-            'allowInsecure' => $server['allow_insecure'],
+            //'allowInsecure' => $server['allow_insecure'],
             'peer' => $server['server_name'],
             'sni' => $server['server_name']
         ]);

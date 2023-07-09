@@ -104,6 +104,12 @@ class UniProxyController extends Controller
                     'server_port' => $this->nodeInfo->server_port,
                     'server_name' => $this->nodeInfo->server_name,
                 ];
+                if ($this->nodeInfo->allow_insecure) {
+                    $response['network'] = 'grpc';
+                    $response['networkSettings'] = [
+                        'serviceName' => 'IKunCloud'
+                    ];
+                }
                 break;
             case 'hysteria':
                 $response = [
